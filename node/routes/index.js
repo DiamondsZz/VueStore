@@ -26,7 +26,7 @@ router.get('/api/homenav', function (req, res) {
 
 //请求首页商品列表
 router.get('/api/homeshoplist', function (req, res) {
-    const homeshoplist = require('./../data/shopList');
+    const homeshoplist = require('./../data/goods_list');
     res.json({success_code: 200, message: homeshoplist});
 });
 

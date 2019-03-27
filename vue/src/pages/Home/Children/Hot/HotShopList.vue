@@ -1,19 +1,14 @@
 <template>
-  <div class="shop-container" v-if="homeshoplist.length > 0">
-    <ul class="shop-list">
-      <li class="shop-list-item" v-for="(shop) in homeshoplist">
-        <img :src="shop.image_url" alt="" width="100%">
-        <h4 class="list-item-title">{{shop.goods_name}}</h4>
-        <div class="list-item-bottom">
-          <span class="item-price">￥{{shop.normal_price / 100}}</span>
-          <span class="item-counter">{{shop.sales_tip}}</span>
-          <span class="item-user">
-            <img  v-for="(user) in shop.bubble" :src="user.avatar" alt="">
-          </span>
-          <span class="item-buy"><button>去拼单 ></button></span>
-        </div>
-      </li>
-    </ul>
+  <div class="shop-list">
+    <div class="shop" v-for="(shop) in homeshoplist">
+      <div class="shop-img">
+        <img  :src="shop.thumb_url" alt="">
+      </div>
+    <div class="shop-inf">
+      <div class="shop-title"><img src="./../../imgs/shop_list/shop_item_icon1.png" alt="">{{shop.goods_name}}</div>
+      <div class="shop-price"><span>￥{{shop.group.price/100}}</span> {{shop.sales_tip}}</div>
+    </div>
+    </div>
   </div>
 </template>
 
@@ -29,60 +24,41 @@
 </script>
 
 <style scoped lang="stylus" ref="stylesheet/stylus">
-  .shop-container
-    margin-bottom 50px
-    background-color #f5f5f5
-    .shop-list
-      .shop-list-item
-        margin-bottom 10px
-        background-color #fff
-        display flex
-        flex-direction column
-        .list-item-title
-          line-height 22px
-          width 94%
-          margin-left 3%
-          height 44px
-          overflow hidden
-        .list-item-bottom
-          margin 10px 0
-          display flex
-          flex-direction row
-          justify-content space-around
-          align-items center
-          .item-price
-            font-size 18px
-            text-align center
-            font-weight bolder
-            color red
-            flex 1
-          .item-counter
-            flex 2
-            font-size 12px
-            color #cccccc
-          .item-user
-            display flex
-            justify-content center
-            align-items center
-            flex 1
-            img
-              width 30px
-              border-radius 50%
-            img:nth-child(2)
-              margin-left -6px
-          .item-buy
-            flex 2
-            button
-              width 80%
-              height 34px
-              font-size 15px
-              border none
-              color #fff
-              display flex
-              justify-content center
-              align-items center
-              margin-left 10px
-              background-color red
-              border-radius 8px
+.shop
+  display flex
+  height 168px
+  margin 10px 6px
+  .shop-img
+    flex 1
+    margin 5px 8px
+    img
+     width 100%
+     height 100%
+  .shop-inf
+    flex 1
+    display flex
+    flex-direction column
+    justify-content space-between
+    .shop-title
+      display -webkit-box
+      overflow hidden
+      text-overflow ellipsis
+      -webkit-line-clamp 2
+      -webkit-box-orient vertical
+      line-height 18px
+      font-size 14px
+      color #151516;
+      img
+        width 20%
+        margin 5px
+        vertical-align middle
+     .shop-price
+       font-size 14px
+       color #58595b
+       margin-bottom 10px
+       span
+         color #e02e24
+         font-size 16px
+         font-weight 700
 
 </style>
