@@ -26,8 +26,17 @@ router.get('/api/homenav', function (req, res) {
 
 //请求首页商品列表
 router.get('/api/homeshoplist', function (req, res) {
-    const homeshoplist = require('./../data/goods_list');
-    res.json({success_code: 200, message: homeshoplist});
+    let pageSzie=req.query.pageSize||1;
+    let count=req.query.count||10;
+    const  sql ='select * from shoplist limit '+(pageSzie-1)*count+','+count;
+    console.log(sql);
+    connection.query(sql,function (err,result) {
+        if (err) {
+            res.json("查询失败");
+        } else if (result) {
+            res.json({success_code: 200, message: result});
+        }
+    });
 });
 
 
