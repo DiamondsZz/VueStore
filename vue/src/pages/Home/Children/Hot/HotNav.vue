@@ -108,12 +108,12 @@
         flex-wrap wrap
         .inner-item
           width 90px
-          height 90px
+          height 50%
           display flex
           flex-direction column
           justify-content center
           align-items center
-          font-size 14px
+          font-size .14rem
           color #666666
           img
             width 40%

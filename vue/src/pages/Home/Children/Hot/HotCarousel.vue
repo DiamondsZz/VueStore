@@ -1,6 +1,6 @@
 <template>
   <div class="swiper-container">
-    <div class="swiper-wrapper" v-if="homecarousel.length > 0">
+    <div class="swiper-wrapper">
       <div class="swiper-slide" v-for="(carousel) in homecarousel" >
         <img :src="carousel.src" alt="" width="100%">
       </div>
@@ -31,7 +31,7 @@
               clickable: true,
             },
           })
-        })
+        });
       }
     }
   }
