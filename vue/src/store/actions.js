@@ -21,8 +21,8 @@ export default {
     const result =await getHomeNav() ;
     commit(HOME_NAV, {homenav:result.message.data});
   },
-  async reqHomeShopList({commit}) {
-    const result =await getHomeShopList() ;
-    commit(HOME_SHOPLIST, {homeshoplist:result.message.goods_list});
+  async reqHomeShopList({commit},{pageSize,count}) {
+    const result =await getHomeShopList({pageSize,count}) ;
+    commit(HOME_SHOPLIST, {homeshoplist:result.message});
   }
 }

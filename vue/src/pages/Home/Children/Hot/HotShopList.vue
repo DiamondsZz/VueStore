@@ -2,11 +2,11 @@
   <div class="shop-list">
     <div class="shop" v-for="(shop) in homeshoplist">
       <div class="shop-img">
-        <img  :src="shop.thumb_url" alt="">
+        <img  v-lazy="shop.thumb_url" alt="">
       </div>
     <div class="shop-inf">
       <div class="shop-title"><img src="./../../imgs/shop_list/shop_item_icon1.png" alt="">{{shop.goods_name}}</div>
-      <div class="shop-price"><span>￥{{shop.group.price/100}}</span> {{shop.sales_tip}}</div>
+      <div class="shop-price"><span>￥{{shop.price/100}}</span> {{shop.sales_tip}}</div>
     </div>
     </div>
   </div>

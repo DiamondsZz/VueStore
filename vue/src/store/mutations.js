@@ -15,6 +15,6 @@ export default {
     state.homenav = homenav;
   },
   [HOME_SHOPLIST](state,{homeshoplist}) {
-    state.homeshoplist = homeshoplist;
+    state.homeshoplist =  state.homeshoplist .concat(homeshoplist);
   }
 }

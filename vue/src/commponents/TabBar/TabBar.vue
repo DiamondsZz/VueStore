@@ -29,7 +29,7 @@
     methods:{
       switchTo:function (path) {
        this.$router.replace(path);
-       console.log(this.$route.path)
+       //console.log(this.$route.path)
       }
     }
   }

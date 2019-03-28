@@ -81,7 +81,6 @@
 <style scoped lang="stylus" ref="stylesheet/stylus">
   .home
     padding-top 42px
-
   .fix
     width 100%
     background #f5f5f5
