@@ -1,11 +1,32 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+
+
+/*const Home=()=>import ('./../pages/Home/Home');
+const Chat=()=>import ('./../pages/Chat/Chat');
+const My=()=>import ('./../pages/My/My');
+const Recommend=()=>import ('./../pages/Recommend/Recommend');
+const Search=()=>import ('./../pages/Search/Search');*/
+
 import  Home from './../pages/Home/Home'
 import  Chat from './../pages/Chat/Chat'
 import  My from './../pages/My/My'
 import  Recommend from './../pages/Recommend/Recommend'
 import  Search from './../pages/Search/Search'
+
+/*
+const Hot=()=>import ('./../pages/Home/Children/Hot/Hot');
+const Sport=()=>import ('./../pages/Home/Children/Sport/Sport');
+const Bag=()=>import ('./../pages/Home/Children/Bag/Bag');
+const Computer=()=>import ('./../pages/Home/Children/Computer/Computer');
+const Man=()=>import ('./../pages/Home/Children/Man/Man');
+const Food=()=>import ('./../pages/Home/Children/Foods/Food');
+const Dress=()=>import ('./../pages/Home/Children/Dress/Dress');
+const Phone=()=>import ('./../pages/Home/Children/Phone/Phone');
+const Goods=()=>import ('./../pages/Home/Children/Goods/Goods');
+*/
+
 
 import  Hot from './../pages/Home/Children/Hot/Hot'
 import  Sport from './../pages/Home/Children/Sport/Sport'

@@ -61,6 +61,9 @@
         ]
       }
     },
+    mounted(){
+      this.$router.push('/home/hot');
+    },
     updated(){
       this.handleSelectedId();
     },

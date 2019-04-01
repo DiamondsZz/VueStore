@@ -61,7 +61,7 @@
         }
         //console.log(document.documentElement.scrollHeight);
         //console.log(document.documentElement.scrollTop);
-        if (document.documentElement.scrollHeight - document.documentElement.scrollTop <= this.clientHeight+2)
+        if (document.documentElement.scrollHeight - document.documentElement.scrollTop < this.clientHeight+2)
         {
           this.pageSize++;
           if(this.pageSize<15)
