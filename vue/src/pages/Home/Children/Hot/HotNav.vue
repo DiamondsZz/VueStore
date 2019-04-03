@@ -32,10 +32,6 @@
         barInnerWidth: 0,
         //滚动内容宽度
         scrollContentWidth: 0,
-        //滚动条开始的距离
-        start: 0,
-        //滚动条结束的距离
-        end: 0,
         //滚动条移动的距离
         moveWidth: 0,
       }
