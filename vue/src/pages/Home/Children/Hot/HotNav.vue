@@ -32,6 +32,11 @@
         barInnerWidth: 0,
         //滚动内容宽度
         scrollContentWidth: 0,
+        //滚动条
+        scrollLeftOld: 0,
+        scrollLeftNew: 0,
+        time: null,
+
         //滚动条移动的距离
         moveWidth: 0,
       }
@@ -55,16 +60,48 @@
         this.scrollContentWidth = this.screenWidth * 2;
         this.barInnerWidth = this.barWidth * (this.screenWidth / this.scrollContentWidth);
         //console.log(this.barInnerWidth);
+
+
       },
       bindEvent: function () {
         //console.log(this);
+        this.$el.addEventListener('touchstart', this.handleTouchStart, false);
         this.$el.addEventListener('touchmove', this.handleTouchMove, false);
       },
-      handleTouchMove: function (ev) {
-        this.moveWidth=( (this.barWidth - this.barInnerWidth)*this.$refs.nav.scrollLeft/this.screenWidth);
-        console.log(this.moveWidth);
 
+      handleTouchStart: function (ev) {
+        this.scrollLeftOld = this.$refs.nav.scrollLeft;
+        console.log(this.scrollLeftOld);
       },
+      handleTouchMove: function (ev) {
+
+        this.$refs.nav.onscroll = () => {
+
+          clearInterval(this.time);
+          this.scrollLeftNew = this.$refs.nav.scrollLeft;
+
+          if (this.scrollLeftNew > this.scrollLeftOld) {
+            this.time = setInterval(() => {
+              this.moveWidth++;
+              if (this.moveWidth >= ((this.barWidth - this.barInnerWidth) * this.scrollLeftNew / this.screenWidth)) {
+                this.moveWidth = ((this.barWidth - this.barInnerWidth) * this.scrollLeftNew / this.screenWidth);
+                clearInterval(this.time);
+              }
+            }, 6);
+          }
+
+          if (this.scrollLeftNew < this.scrollLeftOld) {
+            this.time = setInterval(() => {
+              this.moveWidth--;
+              if (this.moveWidth <= ((this.barWidth - this.barInnerWidth) * this.scrollLeftNew / this.screenWidth)) {
+                this.moveWidth = ((this.barWidth - this.barInnerWidth) * this.scrollLeftNew / this.screenWidth);
+                clearInterval(this.time);
+              }
+            }, 6);
+          }
+
+        };
+      }
     }
   }
 </script>
@@ -98,7 +135,7 @@
             width 40%
             margin-bottom 5px
     .hot-nav-content::-webkit-scrollbar
-      //display none
+      display none
     .hot-nav-bottom
       width 33%
       height 2px
