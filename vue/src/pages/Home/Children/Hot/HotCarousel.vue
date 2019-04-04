@@ -15,7 +15,6 @@
   import {
     mapState
   } from 'vuex'
-
   export default {
     name: "hot-carousel",
     computed: {
@@ -30,7 +29,7 @@
               el: '.swiper-pagination',
               clickable: true,
             },
-          })
+          });
         });
       }
     }

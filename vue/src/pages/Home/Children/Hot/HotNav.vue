@@ -71,7 +71,7 @@
 
       handleTouchStart: function (ev) {
         this.scrollLeftOld = this.$refs.nav.scrollLeft;
-        console.log(this.scrollLeftOld);
+        //console.log(this.scrollLeftOld);
       },
       handleTouchMove: function (ev) {
 

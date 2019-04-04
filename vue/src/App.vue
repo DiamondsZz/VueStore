@@ -18,4 +18,6 @@
 </script>
 
 <style scoped lang="stylus" ref="stylesheet/stylus">
+  #app
+    height 100%
 </style>

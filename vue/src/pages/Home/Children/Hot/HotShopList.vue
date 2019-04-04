@@ -46,19 +46,19 @@
       -webkit-line-clamp 2
       -webkit-box-orient vertical
       line-height 18px
-      font-size .14rem
+      font-size 14px
       color #151516;
       img
         width 20%
         margin 5px
         vertical-align middle
      .shop-price
-       font-size .16rem
+       font-size 12px
        color #58595b
        margin-bottom 10px
        span
          color #e02e24
-         font-size .16rem
+         font-size 16px
          font-weight 700
 
 </style>
