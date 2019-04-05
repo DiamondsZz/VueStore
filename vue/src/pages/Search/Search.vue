@@ -1,11 +1,19 @@
 <template>
-  <div class="search">search</div>
+  <div class="search">
+    search
+    <tab-bar> </tab-bar>
+  </div>
 </template>
 
 <script>
-    export default {
-        name: "search"
-    }
+  import TabBar from './../../commponents/TabBar/TabBar'
+
+  export default {
+    name: "search",
+    components: {
+      TabBar
+    },
+  }
 </script>
 
 <style scoped lang="stylus" ref="stylesheet/stylus">

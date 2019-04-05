@@ -5,14 +5,19 @@
       :items="items"
       :options="options"
       @change="handleChange"
-      class="fix"></ly-tab>
-    <router-view></router-view>
+      class="fix">  </ly-tab>
+    <router-view> </router-view>
+    <tab-bar> </tab-bar>
   </div>
 </template>
 
 <script>
+  import  TabBar from './../../commponents/TabBar/TabBar'
   export default {
     name: "Home",
+    components:{
+      TabBar
+    },
     data() {
       return {
         selectedId: 0,

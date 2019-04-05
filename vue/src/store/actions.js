@@ -1,14 +1,18 @@
 import {
   getHomeCarousel,
   getHomeNav,
-  getHomeShopList
+  getHomeShopList,
+  userLogin,
+  getMyShopList
 } from './../api'
 
 
 import {
   HOME_CAROUSEL,
   HOME_NAV,
-  HOME_SHOPLIST
+  HOME_SHOPLIST,
+  LOGIN,
+  MY_SHOPLIST
 } from './mutation-types';
 
 export default {
@@ -24,5 +28,20 @@ export default {
   async reqHomeShopList({commit},{pageSize,count}) {
     const result =await getHomeShopList({pageSize,count}) ;
     commit(HOME_SHOPLIST, {homeshoplist:result.message});
-  }
+  },
+
+  async login({commit},{username,password}) {
+    const result =await userLogin({username,password}) ;
+    if(result.message==='ok')
+    {
+      commit(LOGIN, {login:{username,password}});
+    }
+
+  },
+
+  async reqMyShopList({commit}) {
+    const result =await getMyShopList() ;
+    commit(MY_SHOPLIST, {myshoplist:result.message});
+  },
+
 }

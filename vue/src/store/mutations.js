@@ -1,7 +1,9 @@
 import {
   HOME_CAROUSEL,
   HOME_NAV,
-  HOME_SHOPLIST
+  HOME_SHOPLIST,
+  LOGIN,
+  MY_SHOPLIST
 } from './mutation-types'
 
 
@@ -16,5 +18,11 @@ export default {
   },
   [HOME_SHOPLIST](state,{homeshoplist}) {
     state.homeshoplist =  state.homeshoplist .concat(homeshoplist);
-  }
+  },
+  [LOGIN](state,{login}) {
+    state.login  = login;
+  },
+  [MY_SHOPLIST](state,{myshoplist}) {
+    state.myshoplist = myshoplist ;
+  },
 }

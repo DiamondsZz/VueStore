@@ -14,6 +14,8 @@ import  Chat from './../pages/Chat/Chat'
 import  My from './../pages/My/My'
 import  Recommend from './../pages/Recommend/Recommend'
 import  Search from './../pages/Search/Search'
+import  Login from './../pages/Login/Login'
+
 
 /*
 const Hot=()=>import ('./../pages/Home/Children/Hot/Hot');
@@ -104,6 +106,10 @@ export  default  new VueRouter({
     {
       path:'/recommend',
       component: Recommend,
+    },
+    {
+      path:'/login',
+      component: Login,
     },
     {
       path:'/',

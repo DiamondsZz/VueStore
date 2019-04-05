@@ -10,14 +10,13 @@ const app = express();
 
 
 app.all("*", function(req, res, next) {
-    if (!req.get("Origin")) return next();
-    // use "*" here to accept any origin
-    res.set("Access-Control-Allow-Origin","*");
-    res.set("Access-Control-Allow-Methods", "GET");
-    res.set("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
-    // res.set('Access-Control-Allow-Max-Age', 3600);
-    if ("OPTIONS" === req.method) return res.sendStatus(200);
-    next();
+
+    res.header("Access-Control-Allow-Origin", " * ");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With,Content-Type");
+    res.header("Access-Control-Allow-Methods","POST,GET");
+    next()
+
+
 });
 
 

@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "ly-tab": "^2.1.2",
+    "mint-ui": "^2.2.13",
     "swiper": "^4.5.0",
     "vue": "^2.5.2",
     "vue-lazyload": "^1.2.6",
