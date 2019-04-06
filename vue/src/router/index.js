@@ -39,7 +39,7 @@ import  Food from './../pages/Home/Children/Foods/Food'
 import  Dress from './../pages/Home/Children/Dress/Dress'
 import  Phone from './../pages/Home/Children/Phone/Phone'
 import  Goods from './../pages/Home/Children/Goods/Goods'
-
+import  Person from './../pages/My/children/Person'
 
 Vue.use(VueRouter);
 
@@ -102,6 +102,12 @@ export  default  new VueRouter({
     {
       path:'/my',
       component: My,
+      children:[
+        {
+          path:'person',
+          component: Person,
+        }
+      ]
     },
     {
       path:'/recommend',

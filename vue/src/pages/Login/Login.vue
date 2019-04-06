@@ -17,13 +17,13 @@
     <mt-tab-container v-model="selected">
       <mt-tab-container-item id="1" class="login-user">
         <mt-field label="用户名" class="login-user-form" placeholder="请输入用户名" v-model="username"> </mt-field>
-        <mt-field label="密码" class="login-user-form" placeholder="请输入密码" v-model="password"> </mt-field>
+        <mt-field label="密码" type="password" class="login-user-form" placeholder="请输入密码" v-model="password"> </mt-field>
         <mt-button type="danger" class="login-btn" @click="login">登录</mt-button>
       </mt-tab-container-item>
 
       <mt-tab-container-item id="2" class="login-phone">
         <mt-field label="用户名" class="login-user-form" placeholder="请输入用户名" v-model="username"> </mt-field>
-        <mt-field label="密码" class="login-user-form" placeholder="请输入密码" v-model="password"> </mt-field>
+        <mt-field label="密码"type="password" class="login-user-form" placeholder="请输入密码" v-model="password"> </mt-field>
         <mt-button type="danger" class="register-btn">注册</mt-button>
       </mt-tab-container-item>
     </mt-tab-container>
@@ -37,8 +37,8 @@
     data() {
       return {
         selected: '1',
-        username: '',
-        password: '',
+        username: sessionStorage.getItem('username'),
+        password: sessionStorage.getItem('password'),
         fromRouter:null,
       }
     },
@@ -64,6 +64,8 @@
               });
 
             } else if (this.$store.state.login.username.trim() !== false && this.$store.state.login.password.trim() !== false) {
+              sessionStorage.setItem('username',this.$store.state.login.username);
+              sessionStorage.setItem('password',this.$store.state.login.password);
               this.$indicator.open({
                 text: '正在登录...',
                 spinnerType: 'fading-circle'

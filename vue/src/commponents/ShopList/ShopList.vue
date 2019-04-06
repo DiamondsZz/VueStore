@@ -16,7 +16,7 @@
   export default {
     name: "hot-shop-list",
     props:{
-      shoplist:Object
+      shoplist:Array
     }
   }
 </script>

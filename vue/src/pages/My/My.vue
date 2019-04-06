@@ -1,6 +1,5 @@
 <template>
   <div class="my">
-
     <mt-header title="个人中心" class="my-person">
       <router-link to="/" slot="left">
         <mt-button icon="back">返回</mt-button>
@@ -11,7 +10,7 @@
     </mt-header>
 
     <div class="my-user">
-      <img src="./img/user.png" alt="">
+      <img src="./img/user.png" alt="" @click="set">
       <span>diamondszz</span>
     </div>
     <div class="my-menu">
@@ -29,29 +28,39 @@
       </div>
       <div class="my-menu-address">
         <img src="./img/icon_my_address_v3.png" alt="">
-        <span>收获地址</span>
+        <span>收货地址</span>
       </div>
     </div>
     <div class="my-recommend">
-     <div>精选推荐</div>
+      <div>精选推荐</div>
       <ShopList :shoplist="myshoplist"> </ShopList>
     </div>
     <tab-bar> </tab-bar>
+
+
   </div>
 </template>
 
 <script>
   import TabBar from './../../commponents/TabBar/TabBar'
   import ShopList from './../../commponents/ShopList/ShopList'
+
+  import goodslist from './../../mock/shoplist'
+
   export default {
     name: "My",
     components: {
       TabBar,
       ShopList
     },
-    data(){
-      return{
-        myshoplist:null
+    data() {
+      return {
+        myshoplist: null
+      }
+    },
+    methods: {
+      set: function (){
+
       }
     },
     beforeRouteEnter(to, from, next) {
@@ -59,52 +68,58 @@
         if (vm.$store.state.login.username === null && vm.$store.state.login.password === null) {
           vm.$router.push('/login');
         }
-        vm.$store.dispatch('reqMyShopList').then(()=>{
-          vm.myshoplist=vm.$store.state.myshoplist;
+        vm.$store.dispatch('reqMyShopList').then(() => {
+          //vm.myshoplist=vm.$store.state.myshoplist;
+          vm.myshoplist = goodslist;
         });
 
       })
     },
+
   }
 </script>
 
 <style scoped lang="stylus" ref="stylesheet/stylus">
-  .my-person
-    width 100%
-  .my-user
-    display flex
-    flex-direction column
-    justify-content space-around
-    align-items center
-    height 100px
-    background: linear-gradient(left, #0e97ff, #86faff);
-    margin 4% 4% 0
-    border-radius 10px
-    box-shadow 0 2px 4px #259cb2
-    img
-      width 20%
-      height 60%
-      border-radius 50%
-
-  .my-menu
-    height 100px
-    display flex
-    align-items center
-    //background-color antiquewhite
-    margin-bottom 5%
-    .my-menu-pay, .my-menu-get, .my-menu-order, .my-menu-address
-      height 60px
+  .my
+    padding-bottom 50px
+    .my-person
+      width 100%
+    .my-user
       display flex
-      flex 1
       flex-direction column
       justify-content space-around
       align-items center
-      font-size 12px
+      height 100px
+      background: linear-gradient(left, #0e97ff, #86faff);
+      margin 4% 4% 0
+      border-radius 10px
+      box-shadow 0 2px 4px #259cb2
       img
-        width 25%
-        height 30%
-  .my-recommend div
-     text-align center
-     font-size 14px
-     color #e02e24
+        width 20%
+        height 60%
+        border-radius 50%
+      span
+        font-size 14px
+        color: #fff
+    .my-menu
+      height 100px
+      display flex
+      align-items center
+      //background-color antiquewhite
+      margin-bottom 5%
+      .my-menu-pay, .my-menu-get, .my-menu-order, .my-menu-address
+        height 60px
+        display flex
+        flex 1
+        flex-direction column
+        justify-content space-around
+        align-items center
+        font-size 12px
+        img
+          width 25%
+          height 30%
+    .my-recommend div
+      text-align center
+      font-size 14px
+      color #e02e24
 </style>
