@@ -6,14 +6,14 @@ const connection = require("./../db/db");
 connection.connect();
 
 
-//用户
+//用户登录
 router.post('/api/login', function (req, res) {
 
     //前端请求头设置"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"，避免两次post请求，node需要对请求参数做处理
     //console.log(JSON.parse(Object.keys(req.body)[0]));
     let username=JSON.parse(Object.keys(req.body)[0]).username;
     let password=JSON.parse(Object.keys(req.body)[0]).password;
-    const sql='select * from login where username='+username.toString()+' and password='+password.toString();
+    const sql='select * from login where username="'+username+'" and password="'+password+'"';
     console.log(sql);
     connection.query(sql,function (err,result) {
         //console.log('kkk');
@@ -80,6 +80,58 @@ router.get('/api/myshoplist', function (req, res) {
 });
 
 
+//用户查询信息
+router.post('/api/userget', function (req, res) {
+
+    //前端请求头设置"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"，避免两次post请求，node需要对请求参数做处理
+
+    console.log(JSON.parse(Object.keys(req.body)[0]));
+    const username =JSON.parse(Object.keys(req.body)[0]).username;
+    const password =JSON.parse(Object.keys(req.body)[0]).password;
+
+
+    const  sql='select * from user where username="'+username+'" and password="'+password+'"';
+    console.log(sql);
+    connection.query(sql,function (err,result) {
+
+
+        if(result.length!==0)
+        {
+            res.send({success_code: 200, message:result[0]});
+        }else{
+            res.send('查询失败');
+        }
+    });
+});
+
+//用户修改信息
+router.post('/api/userset', function (req, res) {
+
+    //前端请求头设置"Content-Type":"application/x-www-form-urlencoded;charset=utf-8"，避免两次post请求，node需要对请求参数做处理
+
+    console.log(JSON.parse(Object.keys(req.body)[0]));
+    const icon =JSON.parse(Object.keys(req.body)[0]).icon;
+    const name =JSON.parse(Object.keys(req.body)[0]).name;
+    const sex =JSON.parse(Object.keys(req.body)[0]).sex;
+    const address =JSON.parse(Object.keys(req.body)[0]).address;
+    const birth =JSON.parse(Object.keys(req.body)[0]).birth;
+    const style =JSON.parse(Object.keys(req.body)[0]).style;
+    const username =JSON.parse(Object.keys(req.body)[0]).username;
+    const password =JSON.parse(Object.keys(req.body)[0]).password;
+
+    const  sql='update user set icon="'+icon+'",name="'+name+'",sex="'+sex+'",address="'+address+'",birth="'+birth+'",style="'+style+'"where username="'+username+'" and password="'+password+'"';
+    console.log(sql);
+    connection.query(sql,function (err,result) {
+
+        console.log(result);
+        /*if(result.length!==0)
+        {
+            res.send({success_code: 200, message: 'ok'});
+        }else{
+            res.send('修改失败');
+        }*/
+    });
+});
 
 
 module.exports = router;

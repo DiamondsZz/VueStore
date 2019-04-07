@@ -3,7 +3,8 @@ import {
   HOME_NAV,
   HOME_SHOPLIST,
   LOGIN,
-  MY_SHOPLIST
+  MY_SHOPLIST,
+  USER_SET
 } from './mutation-types'
 
 
@@ -25,4 +26,8 @@ export default {
   [MY_SHOPLIST](state,{myshoplist}) {
     state.myshoplist = myshoplist ;
   },
+  [USER_SET](state,{user}) {
+    state.user=user;
+  },
+
 }

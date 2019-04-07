@@ -40,7 +40,7 @@ import  Dress from './../pages/Home/Children/Dress/Dress'
 import  Phone from './../pages/Home/Children/Phone/Phone'
 import  Goods from './../pages/Home/Children/Goods/Goods'
 import  Person from './../pages/My/children/Person'
-
+import  Set from './../pages/My/children/Set'
 Vue.use(VueRouter);
 
 export  default  new VueRouter({
@@ -106,6 +106,14 @@ export  default  new VueRouter({
         {
           path:'person',
           component: Person,
+        },
+        {
+          path:'set',
+          component: Set,
+        },
+        {
+          path:'/my',
+          redirect:'/my/person'
         }
       ]
     },
