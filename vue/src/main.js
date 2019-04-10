@@ -12,7 +12,7 @@ import 'mint-ui/lib/style.css'
 Vue.use(LyTab);
 Vue.use(VueLazyLoad, {
   //error: '',
-  loading: require('./pages/Home/imgs/load.gif'),
+  loading: require('../static/img/load.gif'),
 });
 Vue.use(MintUI);
 

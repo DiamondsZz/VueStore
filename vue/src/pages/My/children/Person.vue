@@ -1,24 +1,24 @@
 <template>
   <div class="person">
     <div class="person-user">
-      <img src="./../img/user.png" alt="" @click="set">
+      <img src="../../../../static/img/my/user.png" alt="" @click="set">
       <span>{{this.$store.state.user.name}}</span>
     </div>
     <div class="person-menu">
       <div class="person-menu-pay">
-        <img src="./../img/ready_pay.png" alt="">
+        <img src="../../../../static/img/my/ready_pay.png" alt="">
         <span>待付款</span>
       </div>
       <div class="person-menu-get">
-        <img src="./../img/ready_get.png" alt="">
+        <img src="../../../../static/img/my/ready_get.png" alt="">
         <span>待收货</span>
       </div>
       <div class="person-menu-order">
-        <img src="./../img/order.png" alt="">
+        <img src="../../../../static/img/my/order.png" alt="">
         <span>全部订单</span>
       </div>
-      <div class="person-menu-address">
-        <img src="./../img/icon_my_address_v3.png" alt="">
+      <div class="person-menu-address" @click="getGoods">
+        <img src="../../../../static/img/my/icon_my_address_v3.png" alt="">
         <span>收货地址</span>
       </div>
     </div>
@@ -49,6 +49,10 @@
       set:function(){
 
         this.$router.push('/my/set')
+      },
+      getGoods:function(){
+
+        this.$router.push('/my/getgoods')
       }
     },
     beforeRouteEnter(to, from, next) {

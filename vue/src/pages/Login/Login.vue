@@ -52,8 +52,21 @@
     },
     methods: {
       login: function () {
-
-        if (!this.username.trim() === false && !this.password.trim() === false) {
+        console.log(this.username);
+        console.log(this.password);
+        if (this.username === null || this.password === null) {
+          this.$toast({
+            message: '账号或密码不能为空',
+            position: 'bottom',
+            duration: 2000
+          });
+        } else if (this.username.trim().length === 0 || this.password.trim().length === 0) {
+          this.$toast({
+            message: '账号或密码不能为空',
+            position: 'bottom',
+            duration: 2000
+          });
+        } else if (!this.username.trim() === false && !this.password.trim() === false) {
           this.$store.dispatch('login', {username: this.username.trim(), password: this.password.trim()}).then(() => {
             //console.log(this.$store.state.login.username);
             //console.log(this.$store.state.login.password);

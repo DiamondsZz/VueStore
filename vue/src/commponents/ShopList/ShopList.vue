@@ -5,8 +5,8 @@
         <img  v-lazy="shop.thumb_url" alt="">
       </div>
       <div class="shop-inf">
-        <div class="shop-title"><img src="./../../pages/Home/imgs/shop_list/shop_item_icon1.png" alt="">{{shop.goods_name}}</div>
-        <div class="shop-price"><span>￥{{shop.price/100}}</span> {{shop.sales_tip}}</div>
+        <div class="shop-title"><img src="./../../../static/img/home/shop_list/shop_item_icon1.png" alt=""><span>{{shop.goods_name}}</span></div>
+        <div class="shop-price"><span class="shop-pri">￥{{shop.price/100}}</span><span class="shop-tip">{{shop.sales_tip}}</span> </div>
       </div>
     </div>
   </div>
@@ -38,24 +38,35 @@
       flex-direction column
       justify-content space-between
       .shop-title
-        display -webkit-box
-        overflow hidden
-        text-overflow ellipsis
-        -webkit-line-clamp 2
-        -webkit-box-orient vertical
+        display flex
+        justify-content space-between
         line-height 18px
         font-size 14px
         color #151516;
         img
           width 20%
+          height 20%
           margin 5px
           vertical-align middle
+        span
+          display -webkit-box
+          overflow hidden
+          text-overflow ellipsis
+          -webkit-line-clamp 2
+          -webkit-box-orient vertical
       .shop-price
+        display flex
         font-size 12px
         color #58595b
         margin-bottom 10px
-        span
+        .shop-pri
+          flex 1
           color #e02e24
           font-size 16px
           font-weight 700
+          margin-right 5%
+        .shop-tip
+          flex 2
+          text-align left
+
 </style>

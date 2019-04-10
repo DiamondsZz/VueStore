@@ -1,7 +1,7 @@
 <template>
   <div class="my">
     <mt-header title="个人中心" class="my-person">
-      <router-link to="/" slot="left">
+      <router-link :to="back" slot="left">
         <mt-button icon="back">返回</mt-button>
       </router-link>
       <router-link to="/" slot="right">
@@ -22,11 +22,17 @@
 
   export default {
     name: "My",
+    data(){
+      return{
+        back:'/'
+      }
+    },
     components: {
       TabBar,
     },
     beforeRouteEnter(to, from, next) {
       next(vm => {
+        vm.back=from.path;
         if (vm.$store.state.login.username === null && vm.$store.state.login.password === null) {
           vm.$router.push('/login');
         }
@@ -37,6 +43,7 @@
 
 <style scoped lang="stylus" ref="stylesheet/stylus">
   .my
+    height 100%
     padding-bottom 50px
     .my-person
       width 100%

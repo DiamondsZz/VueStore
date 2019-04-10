@@ -5,7 +5,7 @@
         <img  v-lazy="shop.thumb_url" alt="">
       </div>
     <div class="shop-inf">
-      <div class="shop-title"><img src="./../../imgs/shop_list/shop_item_icon1.png" alt="">{{shop.goods_name}}</div>
+      <div class="shop-title"><img src="./../../../../../static/img/home/shop_list/shop_item_icon1.png" alt="">{{shop.goods_name}}</div>
       <div class="shop-price"><span>￥{{shop.price/100}}</span> {{shop.sales_tip}}</div>
     </div>
     </div>

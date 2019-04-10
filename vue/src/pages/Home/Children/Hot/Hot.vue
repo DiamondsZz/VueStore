@@ -2,10 +2,10 @@
   <div class="hot" :style="touchPadding">
     <HotCarousel/>
     <HotNav/>
-    <div class="hot-ad"><img src="./../../imgs/hot_ad/home_ad1.gif" alt="" width="100%"></div>
+    <div class="hot-ad"><img src="./../../../../../static/img/home/hot_ad/home_ad1.gif" alt="" width="100%"></div>
     <HotShopList/>
     <div class="shop-load" v-if="shopLoad">
-      <img src="./../../imgs/load.gif" alt="">加载中.....
+      <img src="../../../../../static/img/load.gif" alt="">加载中.....
     </div>
   </div>
 </template>
