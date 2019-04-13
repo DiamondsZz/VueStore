@@ -46,12 +46,12 @@
       }
     },
     methods:{
+      //个人信息设置页面
       set:function(){
-
         this.$router.push('/my/set')
       },
+      //收货信息页面
       getGoods:function(){
-
         this.$router.push('/my/getgoods')
       }
     },
@@ -61,13 +61,14 @@
 
         if(vm.$store.state.login.username !== null && vm.$store.state.login.password !== null)
         {
+          //用户个人信息获取
         vm.$store.dispatch('get',{username: vm.$store.state.login.username,password: vm.$store.state.login.password}).then(() => {
 
           sessionStorage.setItem('user', JSON.stringify( vm.$store.state.user));
 
         });
         }
-
+          //模拟数据
           vm.myshoplist = goodslist;
         /*vm.$store.dispatch('reqMyShopList').then(() => {
           vm.myshoplist=vm.$store.state.myshoplist;

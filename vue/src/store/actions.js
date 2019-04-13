@@ -15,7 +15,8 @@ import {
   HOME_SHOPLIST,
   LOGIN,
   MY_SHOPLIST,
-  USER_SET
+  USER_SET,
+  BUS
 } from './mutation-types';
 
 export default {
@@ -59,5 +60,10 @@ export default {
     const result =await userGet({username,password});
     commit(USER_SET, {user:result.message});
     //console.log(result);
+  },
+  //添加商品
+    addShop({commit},{shopId,count}){
+    commit(BUS,{shopId,count});
+    //console.log({shopId,count});
   }
 }

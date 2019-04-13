@@ -46,14 +46,18 @@
 
       //console.log(from);
       next(vm => {
+
+        //个人中心页面路径
         vm.fromRouter = from;
         //console.log(vm.fromRouter);
       })
     },
     methods: {
       login: function () {
-        console.log(this.username);
-        console.log(this.password);
+        //console.log(this.username);
+        //console.log(this.password);
+
+        //用户登录信息验证
         if (this.username === null || this.password === null) {
           this.$toast({
             message: '账号或密码不能为空',

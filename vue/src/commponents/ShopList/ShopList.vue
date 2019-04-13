@@ -1,6 +1,6 @@
 <template>
   <div class="shop-list">
-    <div class="shop" v-for="(shop) in shoplist">
+    <div class="shop" v-for="(shop,index) in shoplist" :key="index">
       <div class="shop-img">
         <img  v-lazy="shop.thumb_url" alt="">
       </div>

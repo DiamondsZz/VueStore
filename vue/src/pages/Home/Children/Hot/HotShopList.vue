@@ -1,6 +1,6 @@
 <template>
   <div class="shop-list">
-    <div class="shop" v-for="(shop) in homeshoplist">
+    <div class="shop" v-for="(shop,index) in homeshoplist" :key="index" @click="shopShow(shop)">
       <div class="shop-img">
         <img  v-lazy="shop.thumb_url" alt="">
       </div>
@@ -19,6 +19,11 @@
     name: "hot-shop-list",
     computed: {
       ...mapState(['homeshoplist'])
+    },
+    methods:{
+      shopShow:function(shop){
+        this.$router.push('/shop/'+shop.id)
+      }
     }
   }
 </script>

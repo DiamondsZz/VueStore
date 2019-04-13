@@ -15,8 +15,8 @@ import  My from './../pages/My/My'
 import  Recommend from './../pages/Recommend/Recommend'
 import  Search from './../pages/Search/Search'
 import  Login from './../pages/Login/Login'
-
-
+import  Shop from './../pages/Shop/Shop'
+import  Bus from '../pages/Bus/Bus'
 /*
 const Hot=()=>import ('./../pages/Home/Children/Hot/Hot');
 const Sport=()=>import ('./../pages/Home/Children/Sport/Sport');
@@ -42,7 +42,6 @@ import  Goods from './../pages/Home/Children/Goods/Goods'
 import  Person from './../pages/My/children/Person'
 import  Set from '../pages/My/children/Set'
 import  GetGoods from '../pages/My/children/GetGoods'
-
 
 
 
@@ -133,6 +132,14 @@ export  default  new VueRouter({
     {
       path:'/login',
       component: Login,
+    },
+    {
+      path:'/bus',
+      component: Bus,
+    },
+    {
+      path:'/shop/:id',
+      component: Shop,
     },
     {
       path:'/',
