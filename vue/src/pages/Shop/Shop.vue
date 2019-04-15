@@ -132,6 +132,10 @@
 </template>
 
 <script>
+  import {
+    BUS
+  } from './../../store/mutation-types'
+
   export default {
     name: "shop",
     data() {
@@ -199,8 +203,7 @@
         //console.log(this.$route.params.id);
         //console.log(this.count);
 
-
-        this.$store.dispatch('addShop', {
+        this.$store.commit(BUS,{
           shopId: parseInt(this.$route.params.id),
           count: this.count
         });

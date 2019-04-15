@@ -61,9 +61,5 @@ export default {
     commit(USER_SET, {user:result.message});
     //console.log(result);
   },
-  //添加商品
-    addShop({commit},{shopId,count}){
-    commit(BUS,{shopId,count});
-    //console.log({shopId,count});
-  }
+
 }

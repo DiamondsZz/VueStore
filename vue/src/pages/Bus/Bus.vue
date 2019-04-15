@@ -8,15 +8,15 @@
       <mt-button icon="more" slot="right"> </mt-button>
     </mt-header>
 
-    <div  v-for="(shop,index) in shoplist"  :key="index">
+    <div  v-for="(shop,index) in $store.state.busshoplist"  :key="index">
     <ul class="bus-content">
-      <li class="bus-content-btn">
-        <img src="../../../static/img/my/check.png" alt="">
+      <li class="bus-content-btn" @click="shopChecked(shop,index)">
+        <img :src="shop.checked===true?isChecked.is:isChecked.not" alt="">
       </li>
       <li class="bus-content-shop"><img :src="shop.thumb_url" alt=""></li>
       <li class="bus-content-more">
         <span class="bus-content-more-title"> <img src="../../../static/img/shop/icon.png" alt="">{{shop.goods_name}}</span>
-        <span class="bus-content-more-price">￥{{shop.price}}</span>
+        <span class="bus-content-more-price">￥{{shop.price*shop.count}}</span>
       </li>
     </ul>
 
@@ -45,17 +45,31 @@
 </template>
 
 <script>
+
+
+  import {BUS_SHOPLIST} from './../../store/mutation-types'
+
   export default {
     name: "bus",
     data() {
       return {
-        shoplist:this.$store.state.busshoplist //当前页面商品数据
+        isChecked:{
+          is:require('./../../../static/img/my/checked.png'),
+          not:require('./../../../static/img/my/check.png')
+        }
       }
     },
-    mounted(){
-      console.log('localStorage.getItem:'+ localStorage.getItem('bus') );
+    watch:{
+
     },
     methods: {
+      //商品选中功能
+      shopChecked:function(shop,index){
+        shop.checked=!shop.checked;
+        this.$store.commit(BUS_SHOPLIST,{homeshop:null,shop:shop,index:index});
+      },
+
+
       //购物车增加功能
       countDecrease: function (index) {
         //当前页面的shoplist数据和购物车当中的busshoplist数据进行更新
@@ -107,16 +121,19 @@
       }
     },
     beforeRouteEnter(to, from, next) {
+
       next((vm) => {
           //进入购物车路由之前 根据首页请求的商品数据homeshoplist的id和购物车数据vm.$store.state.bus中的id进行匹配
          // 将匹配一致的商品信息添加到 当前路由的shoplist中  遍历shoplist进行页面渲染
         vm.$store.state.homeshoplist.forEach((homeshop, index) => {
 
-          if (vm.shoplist[0] === undefined) {
+          if (vm.$store.state.busshoplist[0] === undefined) {
             vm.$store.state.bus.forEach((BusShop, index) => {
               if (homeshop.id === BusShop.shopId) {
-                homeshop.count=BusShop.count;
-                vm.shoplist.push(homeshop);
+                //vm.$set(homeshop,'count',BusShop.count);
+                //vm.$set(homeshop,'checked',false);
+                homeshop=Object.assign({},homeshop,{count:BusShop.count,checked:false});
+                vm.$store.commit(BUS_SHOPLIST,{homeshop:homeshop,shop:null,index:null})
               }
             });
           } else
@@ -124,17 +141,19 @@
               for(let BusShopIndex in vm.$store.state.bus)
               {
                 if (homeshop.id === vm.$store.state.bus[BusShopIndex].shopId) {
-                  for(let shopIndex in vm.shoplist)
+                  for(let shopIndex in  vm.$store.state.busshoplist)
                   {
-                    if (vm.isEqual(homeshop, vm.shoplist[shopIndex]))
+                    if (vm.isEqual(homeshop, vm.$store.state.busshoplist[shopIndex]))
                     {
-                      vm.shoplist[shopIndex].count=vm.$store.state.bus[BusShopIndex].count;
+                      vm.$store.state.busshoplist[shopIndex].count=vm.$store.state.bus[BusShopIndex].count;
                       break;
                     }
                     else {
-                      if ( parseInt(shopIndex) === vm.shoplist.length-1) {
-                        homeshop.count=vm.$store.state.bus[BusShopIndex].count;
-                        vm.shoplist.push(homeshop);
+                      if ( parseInt(shopIndex) === vm.$store.state.busshoplist.length-1) {
+                        //vm.$set(homeshop,'count',vm.$store.state.bus[BusShopIndex].count);
+                        //vm.$set(homeshop,'checked',false);
+                        homeshop=Object.assign({},homeshop,{count:vm.$store.state.bus[BusShopIndex].count,checked:false});
+                        vm.$store.commit(BUS_SHOPLIST,{homeshop:homeshop,shop:null,index:null})
                       }
                     }
                   }
@@ -142,9 +161,6 @@
               }
           }
         });
-        //设置购物车busshoplist本地缓存
-        localStorage.setItem('busshoplist',JSON.stringify(vm.shoplist));
-        //console.log(vm.shoplist);
       });
     },
   }

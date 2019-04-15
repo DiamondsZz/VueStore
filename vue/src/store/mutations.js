@@ -5,7 +5,8 @@ import {
   LOGIN,
   MY_SHOPLIST,
   USER_SET,
-  BUS
+  BUS,
+  BUS_SHOPLIST
 } from './mutation-types'
 
 
@@ -33,7 +34,7 @@ export default {
     state.user=user;
   },
 
-  //购物车信息修改
+  //购物车商品信息记录
   [BUS](state,{shopId,count}) {
     if(state.bus[0]===undefined)
     {
@@ -54,4 +55,18 @@ export default {
     }
     localStorage.setItem('bus',JSON.stringify(state.bus));
   },
+
+  [BUS_SHOPLIST](state,{homeshop,shop,index}) {
+    if(homeshop!==null)
+    {
+      state.busshoplist.push(homeshop);
+    }else if(shop!==null&&index!==null)
+    {
+      state.busshoplist[index]=shop;
+    }
+    //设置购物车busshoplist本地缓存
+    localStorage.setItem('busshoplist',JSON.stringify(state.busshoplist));
+  },
+
+
 }
