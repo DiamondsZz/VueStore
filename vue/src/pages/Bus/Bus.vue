@@ -23,7 +23,7 @@
     <ul class="bus-control">
       <li class="bus-control-decrease" @click="countDecrease(index)">-</li>
       <li class="bus-control-number">
-        <input type="text" :value="shop.count" ref="input">
+        <input type="text" v-model="shop.count" ref="input" @change="countChange(index)">
       </li>
       <li class="bus-control-increase" @click="countIncrease(index)">+</li>
       <li class="bus-control-delete" @click="countDelete(index)">删除</li>
@@ -31,11 +31,11 @@
     </div>
 
     <div class="bus-footer">
-      <div class="bus-footer-checked">
-        <img src="../../../static/img/my/check.png" alt="">
+      <div class="bus-footer-checked" @click="checkAll">
+        <img :src="checkedAll.checked===true?checkedAll.is:checkedAll.not" alt="">
         <span>全选</span>
       </div>
-      <span class="bus-footer-all">总计：￥777</span>
+      <span class="bus-footer-all">总计：￥{{total}}</span>
       <div class="bus-footer-buy">
         <mt-button type="danger" style="height: 100%;">立即结算</mt-button>
       </div>
@@ -56,19 +56,69 @@
         isChecked:{
           is:require('./../../../static/img/my/checked.png'),
           not:require('./../../../static/img/my/check.png')
+        },
+        checkedAll:{
+          checked:false,
+          is:require('./../../../static/img/my/checked.png'),
+          not:require('./../../../static/img/my/check.png')
         }
+      }
+    },
+    computed:{
+      total:function(){
+        let total=0;
+        this.$store.state.busshoplist.forEach((value,index)=>{
+             if(value.checked===true)
+             {
+               total=total+value.count*value.price;
+             }
+        });
+        return total;
       }
     },
     watch:{
 
     },
     methods: {
+      //count改变触发
+      countChange:function(index){
+
+          if(this.$store.state.busshoplist[index].count>20)
+          {
+            this.$store.state.bus[index].count=this.$store.state.busshoplist[index].count=20;
+            this.$toast({
+              message: '亲，该商品最多买20件哦',
+              position: 'middle',
+              duration: 2000
+            });
+          }else if(this.$store.state.busshoplist[index].count<0)
+          {
+            this.$store.state.bus[index].count=this.$store.state.busshoplist[index].count=0;
+          }else{
+            this.$store.state.bus[index].count=this.$store.state.busshoplist[index].count;
+          }
+        localStorage.setItem('bus',JSON.stringify(this.$store.state.bus));
+        localStorage.setItem('busshoplist',JSON.stringify(this.$store.state.busshoplist));
+      },
       //商品选中功能
       shopChecked:function(shop,index){
         shop.checked=!shop.checked;
         this.$store.commit(BUS_SHOPLIST,{homeshop:null,shop:shop,index:index});
       },
-
+      //全选
+      checkAll:function(){
+        this.checkedAll.checked=!this.checkedAll.checked;
+        if(this.checkedAll.checked===true)
+        {
+          this.$store.state.busshoplist.forEach((value,index)=>{
+            value.checked=true;
+          });
+        }else{
+          this.$store.state.busshoplist.forEach((value,index)=>{
+            value.checked=false;
+          });
+        }
+      },
 
       //购物车增加功能
       countDecrease: function (index) {
@@ -101,7 +151,17 @@
         localStorage.setItem('bus',JSON.stringify(this.$store.state.bus));
         localStorage.setItem('busshoplist',JSON.stringify(this.$store.state.busshoplist));
       },
+      //商品删除
       countDelete: function (index) {
+
+        this.$messagebox.confirm('亲，确定要删除吗？').then(() => {
+          this.$store.state.busshoplist.splice(index,1);
+          this.$store.state.bus.splice(index,1);
+          localStorage.setItem('bus',JSON.stringify(this.$store.state.bus));
+          localStorage.setItem('busshoplist',JSON.stringify(this.$store.state.busshoplist));
+        }).catch(()=>{
+          console.log('11');
+        });
 
       },
       //判断两个对象的值是否相等
@@ -146,6 +206,8 @@
                     if (vm.isEqual(homeshop, vm.$store.state.busshoplist[shopIndex]))
                     {
                       vm.$store.state.busshoplist[shopIndex].count=vm.$store.state.bus[BusShopIndex].count;
+
+                      localStorage.setItem('busshoplist',JSON.stringify(vm.$store.state.busshoplist));
                       break;
                     }
                     else {
@@ -264,8 +326,10 @@
           height 40%
           margin-bottom 10%
       .bus-footer-all
-        margin-left 25%
-        margin-right 5%
+        display inline-block
+        width 45%
+        margin-left 10%
+        margin-right 4%
         color #e4393c
         font-size 18px
         font-weight 600

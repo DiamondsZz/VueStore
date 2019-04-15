@@ -61,5 +61,11 @@ export default {
     commit(USER_SET, {user:result.message});
     //console.log(result);
   },
+  //添加加购物车
+  addShop({commit},{shopId,count}){
 
+
+    commit(BUS,{shopId,count});
+
+  },
 }

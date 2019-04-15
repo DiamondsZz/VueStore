@@ -60,7 +60,9 @@ export default {
     if(homeshop!==null)
     {
       state.busshoplist.push(homeshop);
-    }else if(shop!==null&&index!==null)
+
+    }
+    if(shop!==null&&index!==null)
     {
       state.busshoplist[index]=shop;
     }

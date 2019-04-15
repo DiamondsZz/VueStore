@@ -106,7 +106,7 @@
           <ul>
             <li class="shop-buy-count-decrease" @click="countDecrease">-</li>
             <li class="shop-buy-count-number">
-              <input type="text" :value="count" ref="input">
+              <input type="text" v-model="count" ref="input" @change="countChange">
             </li>
             <li class="shop-buy-count-increase" @click="countIncrease">+</li>
           </ul>
@@ -132,9 +132,6 @@
 </template>
 
 <script>
-  import {
-    BUS
-  } from './../../store/mutation-types'
 
   export default {
     name: "shop",
@@ -170,7 +167,17 @@
       shopBus: function () {
         this.popupVisible = true;
       },
-      //商品增加按钮
+
+      //count改变触发
+      countChange:function(){
+        if(this.count>5)
+        {
+          this.count=5
+        }
+      },
+
+
+      //商品减少按钮
       countDecrease: function () {
         this.count--;
         if (this.count < 0) {
@@ -182,13 +189,13 @@
           });
         }
       },
-      //商品减少按钮
+      //商品增加按钮
       countIncrease: function () {
         this.count++;
         if (this.count > 5) {
           this.count = 5;
           this.$toast({
-            message: '该商品最多只能买5件',
+            message: '该商品一次最多只能买5件',
             position: 'middle',
             duration: 2000
           });
@@ -202,11 +209,64 @@
       addShop: function () {
         //console.log(this.$route.params.id);
         //console.log(this.count);
-
-        this.$store.commit(BUS,{
-          shopId: parseInt(this.$route.params.id),
-          count: this.count
+        if(this.$store.state.bus[0]===undefined)
+        {
+          this.$store.dispatch('addShop',{
+            shopId: parseInt(this.$route.params.id),
+            count: this.count
+          }).then(()=>{
+            this.$toast({
+              message: '添加成功',
+              position: 'middle',
+              duration: 2000,
+            });
         });
+          return ;
+        }
+
+        if(this.$store.state.bus[0]!==undefined)
+        {
+          for(let index in this.$store.state.bus)
+          {
+            if(this.$store.state.bus[index].shopId=== parseInt(this.$route.params.id)&&this.$store.state.bus[index].count+this.count>20)
+            {
+              this.$toast({
+                message: '亲，购物车最多放20件哦',
+                position: 'middle',
+                duration: 2000
+              });
+              break;
+            }else if(this.$store.state.bus[index].shopId=== parseInt(this.$route.params.id)){
+              this.$store.dispatch('addShop',{
+                shopId: parseInt(this.$route.params.id),
+                count: this.count
+              }).then(()=>{
+                this.$toast({
+                  message: '添加成功',
+                  position: 'middle',
+                  duration: 2000,
+                });
+              });
+              break;
+            }else if(this.$store.state.bus[index].shopId !== parseInt(this.$route.params.id)){
+              if(parseInt(index)===this.$store.state.bus.length-1)
+              {
+                this.$store.dispatch('addShop',{
+                  shopId: parseInt(this.$route.params.id),
+                  count: this.count
+                }).then(()=>{
+                  this.$toast({
+                    message: '添加成功',
+                    position: 'middle',
+                    duration: 2000,
+                  });
+                });
+                break;
+              }
+            }
+          }
+        }
+
       }
     },
 
