@@ -36,7 +36,7 @@
         <span>全选</span>
       </div>
       <span class="bus-footer-all">总计：￥{{total}}</span>
-      <div class="bus-footer-buy">
+      <div class="bus-footer-buy" @click="buyNow">
         <mt-button type="danger" style="height: 100%;">立即结算</mt-button>
       </div>
     </div>
@@ -80,6 +80,13 @@
 
     },
     methods: {
+
+
+      //支付页面跳转
+      buyNow:function(){
+        this.$router.push('/buy');
+      },
+
       //count改变触发
       countChange:function(index){
 
@@ -312,6 +319,7 @@
       bottom 0
       background-color #fffae7
       display flex
+      justify-content space-between
       align-items center
       .bus-footer-checked
         height 100%
@@ -327,9 +335,7 @@
           margin-bottom 10%
       .bus-footer-all
         display inline-block
-        width 45%
-        margin-left 10%
-        margin-right 4%
+        width 50%
         color #e4393c
         font-size 18px
         font-weight 600

@@ -5,7 +5,7 @@
     <div class="hot-ad"><img src="./../../../../../static/img/home/hot_ad/home_ad1.gif" alt="" width="100%"></div>
     <HotShopList/>
     <div class="shop-load" v-if="shopLoad">
-      <img src="../../../../../static/img/load.gif" alt="">加载中.....
+      <img src="../../../../../static/img/load3.gif" alt=""><span>加载中.....</span>
     </div>
   </div>
 </template>
@@ -81,10 +81,12 @@
       margin-top 20px
       margin-bottom 20px
     .shop-load
+      height 50px
       display flex
       justify-content center
       align-items center
+      font-size 14px
       img
-        width 30%
-        height 30%
+        height 70%
+        margin-right 2%
 </style>

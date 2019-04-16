@@ -17,6 +17,10 @@ import  Search from './../pages/Search/Search'
 import  Login from './../pages/Login/Login'
 import  Shop from './../pages/Shop/Shop'
 import  Bus from '../pages/Bus/Bus'
+import  Buy from '../pages/Buy/Buy'
+import  Result from '../pages/Result/Result'
+
+
 /*
 const Hot=()=>import ('./../pages/Home/Children/Hot/Hot');
 const Sport=()=>import ('./../pages/Home/Children/Sport/Sport');
@@ -140,6 +144,15 @@ export  default  new VueRouter({
     {
       path:'/shop/:id',
       component: Shop,
+    },
+    {
+      path:'/buy',
+      component: Buy,
+    },
+    {
+      path:'/result',
+      name:'Result',
+      component: Result,
     },
     {
       path:'/',

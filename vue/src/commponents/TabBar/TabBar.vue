@@ -2,7 +2,7 @@
   <div class="tabbar">
     <div class="tabbar-footer">
       <ul>
-        <li @click="switchTo('/home')"><img :src="'/home'===$route.path.slice(0,$route.path.lastIndexOf('/'))?tabBarImgArr[0].selected:tabBarImgArr[0].normal" alt=""><span :class="{on:'/home'===$route.path}">首页</span></li>
+        <li @click="switchTo('/home')"><img :src="'/home'===$route.path.slice(0,$route.path.lastIndexOf('/'))?tabBarImgArr[0].selected:tabBarImgArr[0].normal" alt=""><span :class="{on:'/home'===$route.path.slice(0,$route.path.lastIndexOf('/'))}">首页</span></li>
         <li @click="switchTo('/recommend')"><img :src="'/recommend'===$route.path?tabBarImgArr[1].selected:tabBarImgArr[1].normal" alt=""><span :class="{on:'/recommend'===$route.path}">推荐</span></li>
         <li @click="switchTo('/search')"><img :src="'/search'===$route.path?tabBarImgArr[2].selected:tabBarImgArr[2].normal" alt=""><span :class="{on:'/search'===$route.path}">搜索</span></li>
         <li @click="switchTo('/chat')"><img :src="'/chat'===$route.path?tabBarImgArr[3].selected:tabBarImgArr[3].normal" alt=""><span :class="{on:'/chat'===$route.path}">聊天</span></li>
