@@ -55,6 +55,10 @@
         })
       }
     },
+    updated(){
+      console.log(document.documentElement.scrollHeight);
+      document.documentElement.scrollTop=document.documentElement.scrollHeight-document.documentElement.clientHeight;
+    },
     methods: {
       send: function (data) {
         if (data) {
@@ -81,7 +85,6 @@
    padding-bottom 40px
   .chat-content
     height auto
-    background-color floralwhite
     .chat-content-client
       height 60px
       overflow hidden
