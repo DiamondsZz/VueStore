@@ -29,6 +29,37 @@ server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
 
+//socket.io
+const socketIo =require('socket.io');
+const io=socketIo.listen(server);
+io.on('connection', function(socket){
+
+    console.log('connected');
+    socket.emit('server','我是后台机器人哦，来找我聊天吧。');
+    socket.on('client',(data)=>{
+        let msg='';
+        switch(data)
+        {
+            case '今天天气怎么样':
+                msg='很好';
+                break;
+            case '我帅吗':
+                msg='你认为呢？';
+                break;
+            case '发货快吗':
+                msg='很快的，亲';
+                break;
+            case '包邮吗':
+                msg='只要价钱到位，一切都好说哦，亲';
+                break;
+            default:
+                msg='努力升级中....'
+        }
+        socket.emit('server',msg)
+    });
+});
+
+
 /**
  * Normalize a port into a number, string, or false.
  */

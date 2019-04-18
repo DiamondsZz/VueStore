@@ -8,7 +8,6 @@ const indexRouter = require('./routes/index');
 
 const app = express();
 
-
 app.all("*", function(req, res, next) {
 
     res.header("Access-Control-Allow-Origin", " * ");
@@ -18,6 +17,7 @@ app.all("*", function(req, res, next) {
 
 
 });
+
 
 
 // view engine setup

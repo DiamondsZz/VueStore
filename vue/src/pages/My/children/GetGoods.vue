@@ -154,7 +154,7 @@
       margin-bottom 50%
     .get-goods-add
       width 90%
-      height 50%
+      height 60%
       display flex
       flex-direction column
       justify-content center
@@ -168,7 +168,7 @@
         margin-top -1px
     .get-goods-addressPicker
       width 100%
-      height 30%
+      height 50%
       position absolute
       bottom -51px
       left 0

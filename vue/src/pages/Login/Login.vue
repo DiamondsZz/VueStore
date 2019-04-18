@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    <mt-header title="欢迎登录" class="login-person">
+    <mt-header title="登录界面" class="login-person">
       <router-link to="/" slot="left">
         <mt-button icon="back">返回</mt-button>
       </router-link>

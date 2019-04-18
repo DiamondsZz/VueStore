@@ -93,6 +93,7 @@
         this.listShow=false;
         this.cancel =false;
         this.$refs.search.value='';
+        this.$router.push('/home');
       },
       //取消按钮显示
       cancelShow: function () {
@@ -125,13 +126,14 @@
 <style scoped lang="stylus" ref="stylesheet/stylus">
   .search-box
     height 40px
-    border 5px solid #d3d1bf
     display flex
-    margin-bottom  2%
+    margin  2% 2%
     .search-box-input
       width 85%
       height 100%
       box-sizing border-box
+      background-color #d9d9d9
+      border-radius 10px
       border none
       outline none
       padding-left 20px
@@ -142,12 +144,12 @@
       text-align center
       line-height 40px
       padding-left 5px
-      color #6e93ff
-      background-color #d3d1bf
+      font-size 14px
+      color #9c9c9c
   .search-list
       li
-       height 30px
-       line-height 30px
+       height 40px
+       line-height 40px
        padding-left 5%
        margin-left 5%
        border-bottom 1px solid #d9d9d9
