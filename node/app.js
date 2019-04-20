@@ -6,6 +6,9 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 
+
+const bodyParser =require('body-parser');
+
 const app = express();
 
 app.all("*", function(req, res, next) {
@@ -17,7 +20,6 @@ app.all("*", function(req, res, next) {
 
 
 });
-
 
 
 // view engine setup
@@ -47,5 +49,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
+
 
 module.exports = app;

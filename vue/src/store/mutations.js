@@ -5,6 +5,7 @@ import {
   LOGIN,
   MY_SHOPLIST,
   USER_SET,
+  ICON_SET,
   BUS,
   BUS_SHOPLIST
 } from './mutation-types'
@@ -33,7 +34,10 @@ export default {
   [USER_SET](state,{user}) {
     state.user=user;
   },
-
+//用户头像修改
+  [ICON_SET](state,{icon}) {
+   state.user.icon=icon+'?id='+Date.now(); //防止缓存
+  },
   //购物车商品信息记录
   [BUS](state,{shopId,count}) {
     if(state.bus[0]===undefined)

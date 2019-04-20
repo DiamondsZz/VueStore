@@ -24,9 +24,9 @@ export default function Ajax(url = '', params = {}, type = 'GET') {
       promise = axios.get(url)
     } else if ('POST'===  type ) {
       promise = axios.post(url, params,{
-        headers:{
-          "Content-Type":"application/x-www-form-urlencoded;charset=utf-8" //避免两次post请求
-        }
+        // headers:{
+        //   "Content-Type":"application/x-www-form-urlencoded;charset=utf-8" //避免两次post请求
+        // }
       });
     }
     promise.then((response) => {

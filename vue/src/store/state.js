@@ -14,7 +14,7 @@ export default {
   myshoplist: [],
   //用户信息
   user: {
-    icon: '',
+    icon: JSON.parse(sessionStorage.getItem('user'))!==null?JSON.parse(sessionStorage.getItem('user')).icon:'',
     name: JSON.parse(sessionStorage.getItem('user'))!==null?JSON.parse(sessionStorage.getItem('user')).name:'' ,
     sex: JSON.parse(sessionStorage.getItem('user'))!==null?JSON.parse(sessionStorage.getItem('user')).sex:'' ,
     address: JSON.parse(sessionStorage.getItem('user'))!==null?JSON.parse(sessionStorage.getItem('user')).address:'' ,

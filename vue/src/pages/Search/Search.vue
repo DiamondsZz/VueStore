@@ -150,7 +150,6 @@
       li
        height 40px
        line-height 40px
-       padding-left 5%
        margin-left 5%
        border-bottom 1px solid #d9d9d9
 

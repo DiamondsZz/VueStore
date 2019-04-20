@@ -10,7 +10,7 @@ export const getHomeCarousel =()=> Ajax(BASE_URL+'/api/homecarousel');
 export const getHomeNav =()=> Ajax(BASE_URL+'/api/homenav');
 
 //请求首页商品列表数据
-export const getHomeShopList =({pageSize,count})=> Ajax(BASE_URL+'/api/homeshoplist',{pageSize,count});
+export const getHomeShopList =({pageSize,count})=> Ajax(BASE_URL + '/api/homeshoplist', {pageSize, count});
 
 //登录
 export const userLogin=({username,password})=>Ajax(BASE_URL+'/api/login',{username,password},'POST');
@@ -25,7 +25,8 @@ export const userSet=({icon,name,sex,address,birth,style,username,password})=>Aj
 //个人信息查询
 export const userGet=({username,password})=>Ajax(BASE_URL+'/api/userget',{username,password},'POST');
 
-
+//头像上传
+export const iconUpLoad=({img,id,type})=>Ajax(BASE_URL+'/api/iconUpLoad',{img,id,type},'POST');
 
 
 

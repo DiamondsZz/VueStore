@@ -397,7 +397,7 @@
         width 40%
         text-align right
       .shop-footer-bus
-        width 30%
+        width 35%
         height 100%
       .shop-footer-buy
         width 30%

@@ -4,5 +4,6 @@ export const HOME_SHOPLIST = 'home_shoplist';
 export const LOGIN = 'login';
 export const MY_SHOPLIST = 'my_shoplist';
 export const USER_SET = 'user_set';
+export const ICON_SET = 'icon_set';
 export const BUS = 'bus';
 export const BUS_SHOPLIST = 'bus_shoplist';

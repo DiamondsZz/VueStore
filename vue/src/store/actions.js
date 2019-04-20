@@ -5,7 +5,8 @@ import {
   userLogin,
   getMyShopList,
   userSet,
-  userGet
+  userGet,
+  iconUpLoad
 } from './../api'
 
 
@@ -16,6 +17,7 @@ import {
   LOGIN,
   MY_SHOPLIST,
   USER_SET,
+  ICON_SET,
   BUS
 } from './mutation-types';
 
@@ -55,17 +57,21 @@ export default {
 
   },
 
+  //头像上传
+  async updateIcon({commit},{img,id,type}){
+    const result =await iconUpLoad({img,id,type});
+    console.log(result);
+    commit(ICON_SET,{icon:result.icon})
+  },
+
   //查询个人信息
   async get({commit},{username,password}){
     const result =await userGet({username,password});
     commit(USER_SET, {user:result.message});
     //console.log(result);
   },
-  //添加加购物车
+  //添加购物车
   addShop({commit},{shopId,count}){
-
-
     commit(BUS,{shopId,count});
-
   },
 }

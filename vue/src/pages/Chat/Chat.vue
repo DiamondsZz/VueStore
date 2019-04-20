@@ -56,7 +56,7 @@
       }
     },
     updated(){
-      console.log(document.documentElement.scrollHeight);
+      //console.log(document.documentElement.scrollHeight);
       document.documentElement.scrollTop=document.documentElement.scrollHeight-document.documentElement.clientHeight;
     },
     methods: {

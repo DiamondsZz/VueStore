@@ -1,7 +1,8 @@
 <template>
   <div class="set">
     <div class="set-icon">
-      <mt-cell title="头像"><img src="../../../../static/img/my/user.png" alt="" ref="icon"></mt-cell>
+      <mt-cell title="头像"><img :src="$store.state.user.icon" alt="" ref="icon"></mt-cell>
+      <input type="file" ref="file" @change="upFile" class="set-file">
     </div>
     <div class="set-name" @click="updateName">
       <mt-cell title="昵称" is-link><span style="color: green" ref="name">{{this.$store.state.user.name}}</span></mt-cell>
@@ -22,6 +23,10 @@
       </mt-cell>
     </div>
 
+
+
+
+
     <mt-datetime-picker
       ref="picker"
       type="date"
@@ -31,7 +36,6 @@
       :endDate="endDate"
     >
     </mt-datetime-picker>
-
 
 
   </div>
@@ -48,6 +52,23 @@
       }
     },
     methods: {
+
+      upFile:function(){
+        let fileReader=new FileReader();
+        let arr=[];
+        console.log(fileReader);
+        console.log(this.$refs.file.files[0]);
+        fileReader.readAsDataURL(this.$refs.file.files[0]);
+        fileReader.onload=()=>{
+          if( fileReader.readyState===2)
+          {
+            console.log(fileReader.result);
+            this.$store.dispatch('updateIcon',{img:fileReader.result,id:JSON.parse(sessionStorage.getItem('user')).id,type:this.$refs.file.files[0].type})
+          }
+        };
+      },
+
+
       updateStyle: function () {
         this.$messagebox.prompt(' ', '个性签名').then((val) => {
           //console.log(val.value);
@@ -93,7 +114,9 @@
       handleBirth: function (value) {
         this.$refs.birth.innerText = value.toLocaleDateString();
         this.$refs.picker.close();
-      }
+      },
+
+
     },
     beforeRouteLeave(to, from, next) {
 
@@ -131,11 +154,17 @@
 <style scoped lang="stylus" ref="stylesheet/stylus">
   .set-icon, .set-name, .set-sex, .set-address, .set-birth, .set-style
     margin-top -1px
+    .set-file
+     position absolute
+     top 8%
+     right 4%
+     width 20%
+     height 40px
+     opacity 0
   .set-icon img
     width 40%
     height 40%
     border-radius 50%
     margin-left 50%
-
 
 </style>
