@@ -4,7 +4,7 @@
       <router-link to="/" slot="left">
         <mt-button icon="back">返回</mt-button>
       </router-link>
-      <mt-button icon="more" slot="right"> </mt-button>
+      <mt-button icon="more" slot="right"></mt-button>
     </mt-header>
 
     <div class="shop-message" @click="modalShow">
@@ -120,7 +120,7 @@
 
     <div class="shop-footer">
       <div class="shop-bus-icon" @click="busEnter"><img src="./../../../static/img/my/bus-icon.png" alt=""
-                                                        style="width: 50%;height: 100%;"></div>
+                                                        style="width: 50%;height: 100%;"><span class="shop-bus-icon-count" v-if="$store.state.bus.length>0">{{$store.state.bus.length}}</span></div>
       <div class="shop-footer-bus" @click="shopBus">
         <mt-button type="primary" style="width: 100%;height: 100%;font-size:16px;">加入购物车</mt-button>
       </div>
@@ -142,7 +142,7 @@
         },  //当前页面商品数据
         popupVisible: false, //加入购物车功能显示
         count: 1,  //商品数量
-        modal: false
+        modal: false,
       }
     },
     beforeRouteEnter(to, from, next) {
@@ -169,10 +169,9 @@
       },
 
       //count改变触发
-      countChange:function(){
-        if(this.count>5)
-        {
-          this.count=5
+      countChange: function () {
+        if (this.count > 5) {
+          this.count = 5
         }
       },
 
@@ -209,38 +208,34 @@
       addShop: function () {
         //console.log(this.$route.params.id);
         //console.log(this.count);
-        if(this.$store.state.bus[0]===undefined)
-        {
-          this.$store.dispatch('addShop',{
+        if (this.$store.state.bus[0] === undefined) {
+          this.$store.dispatch('addShop', {
             shopId: parseInt(this.$route.params.id),
             count: this.count
-          }).then(()=>{
+          }).then(() => {
             this.$toast({
               message: '添加成功',
               position: 'middle',
               duration: 2000,
             });
-        });
-          return ;
+          });
+          return;
         }
 
-        if(this.$store.state.bus[0]!==undefined)
-        {
-          for(let index in this.$store.state.bus)
-          {
-            if(this.$store.state.bus[index].shopId=== parseInt(this.$route.params.id)&&this.$store.state.bus[index].count+this.count>20)
-            {
+        if (this.$store.state.bus[0] !== undefined) {
+          for (let index in this.$store.state.bus) {
+            if (this.$store.state.bus[index].shopId === parseInt(this.$route.params.id) && this.$store.state.bus[index].count + this.count > 20) {
               this.$toast({
                 message: '亲，购物车最多放20件哦',
                 position: 'middle',
                 duration: 2000
               });
               break;
-            }else if(this.$store.state.bus[index].shopId=== parseInt(this.$route.params.id)){
-              this.$store.dispatch('addShop',{
+            } else if (this.$store.state.bus[index].shopId === parseInt(this.$route.params.id)) {
+              this.$store.dispatch('addShop', {
                 shopId: parseInt(this.$route.params.id),
                 count: this.count
-              }).then(()=>{
+              }).then(() => {
                 this.$toast({
                   message: '添加成功',
                   position: 'middle',
@@ -248,13 +243,12 @@
                 });
               });
               break;
-            }else if(this.$store.state.bus[index].shopId !== parseInt(this.$route.params.id)){
-              if(parseInt(index)===this.$store.state.bus.length-1)
-              {
-                this.$store.dispatch('addShop',{
+            } else if (this.$store.state.bus[index].shopId !== parseInt(this.$route.params.id)) {
+              if (parseInt(index) === this.$store.state.bus.length - 1) {
+                this.$store.dispatch('addShop', {
                   shopId: parseInt(this.$route.params.id),
                   count: this.count
-                }).then(()=>{
+                }).then(() => {
                   this.$toast({
                     message: '添加成功',
                     position: 'middle',
@@ -394,8 +388,22 @@
       left 0
       display flex
       .shop-bus-icon
+        position relative
         width 40%
         text-align right
+        .shop-bus-icon-count
+          display inline-block
+          position absolute
+          top 0
+          right 8%
+          width 15%
+          height 35%
+          border-radius 50%
+          color #fff
+          font-size 10px
+          text-align center
+          line-height 15px
+          background-color #09b4ff
       .shop-footer-bus
         width 35%
         height 100%

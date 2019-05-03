@@ -162,13 +162,13 @@ router.post('/api/iconUpLoad', function (req, res) {
          {
              console.log(err);
          }else{
-             const sql='update user set icon="http://127.0.0.1:3000/images/user/user' +req.body.id +'.'+req.body.type.substring(req.body.type.indexOf('/')+1)+ '"where id="' + req.body.id +'"';
+             const sql='update user set icon="http://127.0.0.1:3003/images/user/user' +req.body.id +'.'+req.body.type.substring(req.body.type.indexOf('/')+1)+ '"where id="' + req.body.id +'"';
              connection.query(sql,function (err,result) {
                  if(err)
                  {
                      console.log(err);
                  }else{
-                     res.send({icon:"http://127.0.0.1:3000/images/user/user"+req.body.id +'.'+req.body.type.substring(req.body.type.indexOf('/')+1)})
+                     res.send({icon:"http://127.0.0.1:3003/images/user/user"+req.body.id +'.'+req.body.type.substring(req.body.type.indexOf('/')+1)})
                  }
                  console.log(result);
              })

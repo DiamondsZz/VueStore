@@ -1,7 +1,8 @@
 <template>
   <div class="person">
+
     <div class="person-user">
-      <img src="../../../../static/img/my/user.png" alt="" @click="set">
+      <img :src="$store.state.user.icon" alt="" @click="set">
       <span>{{this.$store.state.user.name}}</span>
     </div>
     <div class="person-menu">
@@ -26,6 +27,9 @@
       <div>精选推荐</div>
       <ShopList :shoplist="myshoplist"> </ShopList>
     </div>
+
+
+
   </div>
 </template>
 
@@ -44,6 +48,9 @@
       return {
         myshoplist: null
       }
+    },
+    beforeMount(){
+
     },
     methods:{
       //个人信息设置页面

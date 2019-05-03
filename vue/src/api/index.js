@@ -1,7 +1,7 @@
 import Ajax from './Ajax'
 
 //const BASE_URL = '/api';
-const BASE_URL = 'http://127.0.0.1:3000';
+const BASE_URL = 'http://127.0.0.1:3003';
 
 //请求首页轮播图数据
 export const getHomeCarousel =()=> Ajax(BASE_URL+'/api/homecarousel');

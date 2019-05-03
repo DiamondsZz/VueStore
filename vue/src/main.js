@@ -23,7 +23,7 @@ Vue.use(VueLazyLoad, {
 });
 Vue.use(MintUI);
 
-Vue.use(VueSocketIo, socketIo('http://localhost:3000'));
+Vue.use(VueSocketIo, socketIo('http://localhost:3003'));
 
 
 new Vue({

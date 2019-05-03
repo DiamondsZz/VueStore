@@ -12,7 +12,7 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(process.env.PORT || '3003');
 app.set('port', port);
 
 /**
@@ -53,7 +53,7 @@ io.on('connection', function(socket){
                 msg='只要价钱到位，一切都好说哦，亲';
                 break;
             default:
-                msg='努力升级中....'
+                msg='亲，我在努力升级中哦....'
         }
         socket.emit('server',msg)
     });

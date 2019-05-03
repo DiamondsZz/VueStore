@@ -9,8 +9,6 @@
       </router-link>
     </mt-header>
 
-
-
     <router-view> </router-view>
     <tab-bar> </tab-bar>
   </div>
@@ -24,7 +22,7 @@
     name: "My",
     data(){
       return{
-        back:'/'
+        back:'/',
       }
     },
     components: {
