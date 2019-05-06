@@ -75,7 +75,7 @@
         if(this.$refs.search.value!=='')
         {
           this.list=[];
-          let pattern=new RegExp('['+this.word2Unicode(this.$refs.search.value)+']');
+          let pattern=new RegExp(this.word2Unicode(this.$refs.search.value));
 
           this.result.forEach((value,index)=>{
             if(pattern.test(value)&&this.list.indexOf(value)===-1)
