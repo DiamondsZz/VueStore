@@ -138,10 +138,6 @@ router.post('/addShop', function (req, res) {
 
 
 
-
-
-
-
 router.get('/user',function (req,res) {
     const sql = 'select * from user ';
     connection.query(sql, function (err, result) {
@@ -150,6 +146,39 @@ router.get('/user',function (req,res) {
             res.send({success_code: 200, message: result});
         } else {
             res.send('用户为空');
+        }
+    });
+})
+
+
+
+
+router.post('/userLogin',function (req,res) {
+    let username =req.body.userName;
+    let password = req.body.userPwd;
+
+    const sql = 'select * from user where userName="' + username + '" and userPwd="' + password + '"';
+    console.log(sql);
+    connection.query(sql, function (err, result) {
+        if (result.length !== 0) {
+            const updateSql = 'update  user set userIsLogin = 1  where userName="' + username + '" and userPwd="' + password + '"';
+
+            connection.query(updateSql, function (err, result) {
+                if (result.length !== 0){
+                    const selectSql = 'select * from user where userName="' + username + '" and userPwd="' + password + '"';
+                    connection.query(selectSql, function (err, result){
+                        if (result.length !== 0){
+                            res.send({success_code: 200, message: result});
+                        }else{
+                            res.send('查无此人！');
+                        }
+                    })
+                }else{
+                    res.send('没有该用户')
+                }
+            })
+        }else{
+            res.send('账号或密码不正确')
         }
     });
 })
