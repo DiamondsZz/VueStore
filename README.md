@@ -1,2 +1,1 @@
-# VueStore
-vue练手
+菜鸡项目
